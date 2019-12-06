@@ -1,10 +1,14 @@
 package _04_magic_box;
+
+//40 - 60
+//132 - 161
+
 /*
  *    Copyright (c) The League of Amazing Programmers 2013-2019
  *    Level 1
  */
 
-
+//
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
@@ -19,7 +23,6 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 public class MagicBox extends JPanel implements Runnable, MouseListener {
-
 	/*
 	 * We are going to hide secrets within the magic box. 
 	 * When the user clicks on a secret place, stuff will happen.
@@ -49,6 +52,7 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 
 	private void createUI() {
 		JFrame frame = new JFrame("The Magic Box contains many secrets...");
+		frame.addMouseListener(this);
 		frame.add(this);
 		setPreferredSize(new Dimension(backgroundImage.getWidth(), backgroundImage.getHeight()));
 		frame.pack();
@@ -57,7 +61,7 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	}
 
 	private void loadBackgroundImage() throws Exception {
-		String imageFile = "src/_04_magic_box/magic-box.jpg";
+		String imageFile = "src/_04_magic_box/download.jpg";
 		try {
 			backgroundImage = ImageIO.read(new File(imageFile));
 		} catch (IOException e) {
@@ -74,12 +78,20 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
+		
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+	//	System.out.println(e.getX());
+		//System.out.println(e.getY());
+		if (((e.getX() > 40)&&(e.getX()<60)) && ((e.getY() > 130))&&(e.getY() < 160)) {
+			System.out.println("You found it!");
+		}
+		else {
+			
+		}
 	}
 
 	@Override

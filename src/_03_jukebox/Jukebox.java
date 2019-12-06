@@ -5,6 +5,8 @@ package _03_jukebox;
  */
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -12,7 +14,11 @@ import java.net.URL;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import javazoom.jl.player.advanced.AdvancedPlayer;
@@ -20,10 +26,26 @@ import javazoom.jl.player.advanced.AdvancedPlayer;
 /*   If you don't have javazoom.jar in your project, you can download it from here: http://bit.ly/javazoom
  *   Right click your project and add it as a JAR (Under Java Build Path > Libraries).*/
 
-public class Jukebox implements Runnable {
-
+public class Jukebox implements Runnable, ActionListener {
+	JButton b1 = new JButton();
+	JButton b2 = new JButton();
+	Song song1 = new Song("My disappointment is immeasurable and my day is ruined HD 1080P.mp3 ");
+	Song song2 = new Song("At Long Last.mp3");
     public void run() {
-
+    	
+    	JFrame frame = new JFrame();
+    	JPanel panel = new JPanel();
+    	frame.add(panel);
+    	
+    	b1.addActionListener(this);
+    	b2.addActionListener(this);
+    	b1.setText("Dissapoint");
+    	b2.setText("At Long Last");
+    	panel.add(b1);
+    	panel.add(b2);
+    	frame.pack();
+    	frame.setVisible(true);
+    	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// 1. Find an mp3 on your computer or on the Internet.
 		// 2. Create a Song object for that mp3
 
@@ -44,6 +66,18 @@ public class Jukebox implements Runnable {
 		URL imageURL = getClass().getResource(fileName);
 		Icon icon = new ImageIcon(imageURL);
 		return new JLabel(icon);
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource() == b1) {
+			song1.play();
+		}
+		else {
+			song2.play();
+		}
 	}
 
 }
